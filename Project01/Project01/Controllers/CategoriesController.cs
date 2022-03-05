@@ -41,7 +41,7 @@ namespace Project01.Controllers
         // GET: Categories
         public ActionResult Index()
         {
-            return View();
+            return View(categories);
         }
     }
 }
