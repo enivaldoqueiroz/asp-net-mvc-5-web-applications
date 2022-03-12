@@ -56,5 +56,21 @@ namespace Project01.Controllers
             category.CategoryId = categories.Select(m => m.CategoryId).Max() + 1;
             return RedirectToAction("Index");
         }
+
+        public ActionResult Edit(long id)
+        {
+            return View(categories.Where(m => m.CategoryId == id).First());
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(Category category)
+        {
+            categories.Remove(categories.Where(
+                            c => c.CategoryId == category.CategoryId)
+                            .First());
+            categories.Add(category);
+            return RedirectToAction("Index");
+        }
     }
 }
