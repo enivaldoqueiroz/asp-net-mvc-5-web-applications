@@ -1,8 +1,6 @@
 ﻿using Project01.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Project01.Controllers
@@ -48,6 +46,15 @@ namespace Project01.Controllers
         public ActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(Category category)
+        {
+            categories.Add(category);
+            category.CategoryId = categories.Select(m => m.CategoryId).Max() + 1;
+            return RedirectToAction("Index");
         }
     }
 }
