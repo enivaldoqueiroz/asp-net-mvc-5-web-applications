@@ -43,5 +43,11 @@ namespace Project01.Controllers
         {
             return View(categories);
         }
+
+        //GET: Create
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }
