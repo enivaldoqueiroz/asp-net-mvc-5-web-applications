@@ -66,11 +66,14 @@ namespace Project01.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Category category)
         {
-            categories.Remove(categories.Where(
-                            c => c.CategoryId == category.CategoryId)
-                            .First());
+            categories.Remove(categories.Where( c => c.CategoryId == category.CategoryId).First());
             categories.Add(category);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Details(long id)
+        {
+            return View(categories.Where(m => m.CategoryId == id).First());
         }
     }
 }
